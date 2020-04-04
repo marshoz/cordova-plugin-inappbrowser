@@ -17,6 +17,8 @@
  under the License.
  */
 
+#if !WK_WEB_VIEW_ONLY
+
 #import "CDVUIInAppBrowser.h"
 #import <Cordova/CDVPluginResult.h>
 #import <Cordova/CDVUserAgentUtil.h>
@@ -29,9 +31,7 @@
 #define    kInAppBrowserToolbarBarPositionTop @"top"
 
 #define    TOOLBAR_HEIGHT 44.0
-
 #define    STATUSBAR_HEIGHT 20.0
-
 #define    LOCATIONBAR_HEIGHT 21.0
 #define    FOOTER_HEIGHT ((TOOLBAR_HEIGHT) + (LOCATIONBAR_HEIGHT))
 
@@ -661,8 +661,7 @@ static CDVUIInAppBrowser* instance = nil;
     [self.view sendSubviewToBack:self.webView];
 
     self.webView.delegate = _webViewDelegate;
-    // self.webView.backgroundColor = [UIColor whiteColor];
-    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.backgroundColor = [UIColor whiteColor];
 
     self.webView.clearsContextBeforeDrawing = YES;
     self.webView.clipsToBounds = YES;
@@ -778,8 +777,7 @@ static CDVUIInAppBrowser* instance = nil;
         [self.toolbar setItems:@[self.closeButton, flexibleSpaceButton, self.backButton, fixedSpaceButton, self.forwardButton]];
     }
 
-    // self.view.backgroundColor = [UIColor grayColor];
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.toolbar];
     [self.view addSubview:self.addressLabel];
     [self.view addSubview:self.spinner];
@@ -932,8 +930,7 @@ static CDVUIInAppBrowser* instance = nil;
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    // return UIStatusBarStyleDefault;
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -1131,4 +1128,4 @@ static CDVUIInAppBrowser* instance = nil;
 
 @end
 
-
+#endif
